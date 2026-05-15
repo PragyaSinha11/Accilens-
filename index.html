@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AcciLens — Road Accident Intelligence</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <!-- Your Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════ NAVBAR ══════════════════════════════ -->
+  <nav>
+    <a class="logo" href="#">Acci<em>Lens</em></a>
+    <ul class="nav-links">
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#hotspots">Hotspots</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+    <span class="live-badge">Live Data</span>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ════════════════════════════════ -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <span class="pulse"></span> Road Safety Intelligence Platform
+      </div>
+      <h1>Decode India's <em>Accident</em> Patterns</h1>
+      <p class="hero-desc">
+        AcciLens transforms 50,000+ government road accident records into
+        actionable intelligence — revealing when, where, and why accidents
+        happen across India to support smarter safety decisions.
+      </p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#dashboard">Explore Dashboard</a>
+        <a class="btn-ghost"   href="#insights">View Insights</a>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="scard">
+        <span class="snum r">50K+</span>
+        <span class="slbl">Accident Records Analyzed</span>
+      </div>
+      <div class="scard">
+        <span class="snum a">28</span>
+        <span class="slbl">States &amp; UTs Covered</span>
+      </div>
+      <div class="scard">
+        <span class="snum t">4.2L</span>
+        <span class="slbl">Annual Accidents (India)</span>
+      </div>
+      <div class="scard">
+        <span class="snum p">12</span>
+        <span class="slbl">Key Risk Patterns Found</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════ POWER BI EMBED ══════════════════════════ -->
+  <section class="section" id="dashboard">
+    <div class="sec-tag">Power BI Dashboard</div>
+    <h2>Interactive <span>Accident Analytics</span></h2>
+
+    <div class="pbi-wrapper reveal">
+      <div class="pbi-topbar">
+        <div class="pbi-label">
+          <span class="pbi-live"></span>
+          AcciLens — Power BI Report
+        </div>
+        <span class="pbi-sub">Source: Government Road Accident Data · India</span>
+      </div>
+      <div class="pbi-frame-wrap">
+        <div class="pbi-loading" id="pbi-loader">
+          <div class="pbi-spinner"></div>
+          <p>Loading Power BI dashboard…</p>
+        </div>
+        <iframe
+          title="AcciLens Power BI Dashboard"
+          src="https://app.powerbi.com/reportEmbed?reportId=5fd21981-ff0d-475d-8c6e-28e0ac378f6a&autoAuth=true&ctid=a57f7d92-038e-4d4c-8265-7cd2beb33b34&navContentPaneEnabled=false&filterPaneEnabled=false"
+          allowFullScreen="true"
+          onload="hidePbiLoader()">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════ INSIGHTS ════════════════════════════ -->
+  <section class="section" id="insights">
+    <div class="sec-tag">Data Insights</div>
+    <h2>Accident <span>Trend Analysis</span></h2>
+
+    <!-- Key Metric Cards -->
+    <div class="insight-row reveal">
+      <div class="icard">
+        <span class="icard-num" style="color:var(--red)">18:00</span>
+        <span class="icard-lbl">Peak Accident Hour</span>
+        <span class="icard-sub" style="color:var(--red)">6 PM rush hour</span>
+      </div>
+      <div class="icard">
+        <span class="icard-num" style="color:var(--amber)">October</span>
+        <span class="icard-lbl">Deadliest Month</span>
+        <span class="icard-sub" style="color:var(--amber)">Post-monsoon roads</span>
+      </div>
+      <div class="icard">
+        <span class="icard-num" style="color:var(--teal)">34%</span>
+        <span class="icard-lbl">Fatal Accidents</span>
+        <span class="icard-sub" style="color:var(--teal)">Of total incidents</span>
+      </div>
+      <div class="icard">
+        <span class="icard-num" style="color:var(--purple)">NH</span>
+        <span class="icard-lbl">Highest Risk Road</span>
+        <span class="icard-sub" style="color:var(--purple)">National Highways</span>
+      </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="charts-grid reveal">
+      <div class="chart-card">
+        <div class="chart-title">Accidents by Hour of Day</div>
+        <div class="chart-wrap"><canvas id="chartHour"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Severity Distribution</div>
+        <div class="chart-wrap"><canvas id="chartSeverity"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Monthly Accident Trend</div>
+        <div class="chart-wrap"><canvas id="chartMonth"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Accidents by Road Type</div>
+        <div class="chart-wrap"><canvas id="chartRoad"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Accidents by Day of Week</div>
+        <div class="chart-wrap"><canvas id="chartDay"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Weather Condition Impact</div>
+        <div class="chart-wrap"><canvas id="chartWeather"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════ HOTSPOTS ════════════════════════════ -->
+  <section class="section" id="hotspots">
+    <div class="sec-tag">Hotspot Analysis</div>
+    <h2>Top Accident-Prone <span>States</span></h2>
+
+    <div class="table-card reveal">
+      <div class="table-topbar">
+        <span class="table-title">State-wise Accident Summary</span>
+        <span class="badge badge-red">⚠ High Risk Zones Highlighted</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>State / UT</th>
+              <th>Total Accidents</th>
+              <th>Fatalities</th>
+              <th>Injuries</th>
+              <th>Severity</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody id="hotspot-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════ ABOUT ═══════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="sec-tag">About the Project</div>
+    <h2>What is <span>AcciLens?</span></h2>
+
+    <div class="about-grid reveal">
+      <div class="about-card">
+        <div class="about-icon">📍</div>
+        <h3>Spatial Analysis</h3>
+        <p>Identifies high-frequency accident zones using geographic clustering and density mapping across India's road network.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">⏱️</div>
+        <h3>Temporal Patterns</h3>
+        <p>Reveals peak accident windows — by hour, weekday, and season — enabling targeted enforcement and infrastructure upgrades.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🔍</div>
+        <h3>Root Cause Factors</h3>
+        <p>Correlates weather, road type, speed limits, and lighting with accident frequency and severity outcomes.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">📊</div>
+        <h3>Government Data</h3>
+        <p>Built on 50,000+ official records sourced from India's Ministry of Road Transport and Highways (MoRTH).</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🎓</div>
+        <h3>Academic Capstone</h3>
+        <p>Final-year college capstone project showcasing data analytics, Power BI, and full-stack web development.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🛡️</div>
+        <h3>Safety Advocacy</h3>
+        <p>AcciLens insights support policymakers, traffic authorities, and planners in reducing road fatalities across India.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════ TEAM ════════════════════════════════ -->
+  <section class="section" id="team">
+    <div class="sec-tag">The Team</div>
+    <h2>Meet the <span>Builders</span></h2>
+    <div class="team-grid reveal" id="team-grid">
+      <!-- Populated by main.js -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ══════════════════════════════ -->
+  <footer>
+    <span class="footer-logo">Acci<em>Lens</em></span>
+    <span>Final Year Capstone Project · Road Safety Analytics · India</span>
+    <span>Data Source: MoRTH Government Records</span>
+  </footer>
+
+  <!-- Your Script (must be last so DOM is ready) -->
+  <script src="main.js"></script>
+
+</body>
+</html>

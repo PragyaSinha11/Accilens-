@@ -11,10 +11,11 @@
 /* ── Team Members ──────────────────────────────────────────────────────
    Replace name, role, initials, and color for each teammate.           */
 const teamMembers = [
-  { name: "Your Name",     role: "Data Analysis & Power BI",  initials: "YN", color: "#E63946" },
-  { name: "Classmate 2",   role: "Frontend Development",      initials: "C2", color: "#F4A261" },
-  { name: "Classmate 3",   role: "Data Collection & Prep",    initials: "C3", color: "#1D9E75" },
-  { name: "Classmate 4",   role: "Research & Reporting",      initials: "C4", color: "#a78bfa" },
+  { name: "Daksh Sinha (Roll no.- UA2504CDH51)",     role: "Data collection & cleaning",  initials: "DS", color: "#E63946" },
+  { name: "Rishav Sinha (Roll no.- UA2503CDH234)",   role: "Dashboard creation",      initials: "RS", color: "#F4A261" },
+  { name: "Pragya Sinha (Roll no.- UA2503CDH799)",   role: "Worked on index.html",    initials: "PS", color: "#1D9E75" },
+  { name: "Pragya Sinha (Roll no.- UA2504CDH241)",   role: "Worked on style.css",      initials: "PS", color: "#a78bfa" },
+  { name: "Abhiraj Sinha (Roll no.- UA2503CDH580)",   role: "worked on main.js ",      initials: "AS", color: "#a78bfa" },
 ];
 
 /* ── State-wise Hotspot Data ───────────────────────────────────────────
